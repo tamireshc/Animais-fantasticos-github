@@ -1,0 +1,328 @@
+@import "modal.css";
+@import "tooltip.css";
+@import "dropdown-menu.css";
+@import "menu-mobile.css";
+@import "numeros.css";
+
+body,
+h1,
+h2,
+ul,
+li,
+p,
+dd,
+dt,
+dl {
+  margin: 0px;
+  padding: 0px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background: #faf6ed;
+  color: #222;
+  -webkit-font-smoothing: antialiased;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 120px minmax(300px, 800px) 1fr;
+}
+
+html.large {
+  font-size: 2rem;
+}
+
+.menu {
+  grid-column: 3/5;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background: #fb5;
+}
+
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.menu ul li a {
+  display: block;
+  padding: 10px;
+  margin-right: 10px;
+  color: #222;
+  text-decoration: none;
+  font-family: monospace;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+.grid-section {
+  grid-column: 2/4;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 90px 300px 1fr;
+  gap: 20px;
+  margin-bottom: 4rem;
+}
+
+.titulo {
+  font-family: "Playfair Display", serif;
+  font-size: 6rem;
+  line-height: 1;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  grid-column: 1/4;
+}
+
+.animais h2 {
+  font-family: monospace;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  color: #e54;
+}
+
+.animais h2::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 10px;
+  background: #fb5;
+  margin-right: 10px;
+}
+
+.animais p {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.animais-lista {
+  height: 370px;
+  overflow-y: scroll;
+  grid-column: 2;
+  cursor: pointer;
+}
+
+.animais-lista::-webkit-scrollbar {
+  width: 18px;
+}
+
+.animais-lista::-webkit-scrollbar-thumb {
+  background: #fb5;
+  border-left: 4px solid #faf6ed;
+  border-right: 4px solid #faf6ed;
+}
+
+.animais-lista::-webkit-scrollbar-track {
+  background: #faf6ed;
+}
+
+.animais-descrissao {
+  grid-column: 3;
+}
+
+.animais-descrissao section {
+  margin-bottom: 2rem;
+}
+
+.faq-lista {
+  grid-column: 2/4;
+}
+
+.faq-lista dt {
+  font-weight: bold;
+  font-family: monospace;
+  color: #e54;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.faq-lista dt::before {
+  content: "";
+  display: inline-block;
+  height: 10px;
+  width: 20px;
+  background: #fb5;
+  margin-right: 10px;
+}
+
+.faq-lista dd {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 0.5rem;
+  margin-left: 30px;
+}
+
+.mapa {
+  grid-column: 2;
+}
+
+.dados {
+  grid-column: 3;
+}
+
+.dados li {
+  margin-bottom: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dados li::before {
+  content: "";
+  display: inline-block;
+  height: 10px;
+  width: 20px;
+  background: #fb5;
+  margin-right: 10px;
+}
+
+.copy {
+  grid-column: 3/5;
+  margin-bottom: 2rem;
+  background: #fb5;
+}
+
+.copy p {
+  padding: 20px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .menu,
+  .grid-section,
+  .copy {
+    grid-column: 1;
+  }
+
+  .grid-section {
+    grid-template-columns: 100px 1fr;
+    gap: 10px;
+  }
+
+  .animais-lista {
+    grid-column: 1;
+  }
+
+  .faq-lista,
+  .dados,
+  .mapa {
+    grid-column: 1/3;
+  }
+
+  .grid-section h1 {
+    font-size: 3rem;
+  }
+
+  .menu {
+    margin-top: 0px;
+  }
+
+  .copy {
+    margin-bottom: 0px;
+  }
+}
+
+/*JS Navegação por tabs*/
+.js [data-tab="content"] {
+  display: none;
+}
+
+[data-tab="content"].ativo {
+  display: block !important;
+  animation: show 0.5s forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*JS accordion list- clica no titulo abre o texto*/
+
+.js [data-anime="accordion"] dd {
+  display: none;
+}
+
+[data-anime="accordion"] dt::after {
+  content: "↴";
+  margin-left: 10px;
+}
+
+[data-anime="accordion"] dt.ativo::after {
+  content: " ⬏";
+  margin-left: 10px;
+}
+
+[data-anime="accordion"] dd.ativo {
+  display: block;
+  animation: slideDown 0.5s forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/*JS Animação ao scroll- os itens aparecem de acordo com o scroll*/
+
+.js [data-anime="scroll"] {
+  opacity: 0;
+  transform: translate3d(-30px, 0, 0);
+  transition: 0.3s;
+}
+
+[data-anime="scroll"].ativo {
+  opacity: 1;
+  transition: 0.3s;
+  transform: translate3d(0, 0, 0);
+}
+
+/*Estilo do aberto ou fechado no contato*/
+
+[data-semana]::after {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e54;
+  margin-left: 4px;
+  margin-bottom: 1px;
+  border: 2px solid black;
+}
+
+[data-semana].aberto::after {
+  background: rgb(21, 167, 118);
+}
